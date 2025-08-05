@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "files.autoSave": "onWindowChange",
+  "liveServer.settings.port": 5500,
+  "emmet.includeLanguages": {
+    "php": "html"
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertir PDF a Word - Gratis y Rápido</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="min-h-screen flex items-center justify-center p-6">
+    <div class="bg-white rounded-xl shadow-md p-8 max-w-xl w-full">
+      <h1 class="text-2xl font-bold mb-6 text-center">Convertir PDF a Word</h1>
+      <form id="uploadForm" class="space-y-4">
+        <input type="file" accept="application/pdf" class="w-full border p-3 rounded" required>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded w-full">
+          Convertir a Word
+        </button>
+      </form>
+      <div id="resultado" class="mt-6 hidden">
+        <p class="text-green-600 font-medium">Archivo convertido con éxito.</p>
+        <a href="#" id="downloadLink" class="text-blue-600 underline">Descargar Word</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script de ejemplo -->
+  <script>
+    const form = document.getElementById('uploadForm');
+    const resultado = document.getElementById('resultado');
+    const downloadLink = document.getElementById('downloadLink');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simula resultado exitoso tras 2 segundos
+      setTimeout(() => {
+        resultado.classList.remove('hidden');
+        downloadLink.href = '#';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
