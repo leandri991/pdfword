@@ -82,6 +82,7 @@
     const statusMsg = document.getElementById('statusMsg');
     const descargar = document.getElementById('descargar');
     const API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODBhNTVlYjhjM2JlYWJkYjQ5MzllNjkyZTk4ZTU2YTg4ZGZmNzc2NmVjZTQ4ODMxMDhlOTIxODFjYzNjMTIwODExZTU0MmJkYzY2ODM1OTkiLCJpYXQiOjE3NTQ0MDYyMDAuODE5Mjg3LCJuYmYiOjE3NTQ0MDYyMDAuODE5Mjg5LCJleHAiOjQ5MTAwNzk4MDAuODE1MDcyLCJzdWIiOiI3MjU4ODU0OSIsInNjb3BlcyI6WyJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIl19.r8xtEdkeLwLXto-fJlghY2VdaHR1n9CQpldu-VpVDgGZZ_3Dh7PWK7NkaAACiqkjuTn9hPSIZf4HPsoTv7R01qBerjR4iq5GrcWKn--MVqHrg-K-nxCMoEX1zDrhz99KdUz-Z7N1i9y_LhKjL13W9y_vpuS3_nhbTAUIo_8kW83qb05THJkkL_YFPyL_4aXFje10xT-6_BBib8Go5YgiZ1arTCUS1uSqjUUpMMX_TQrWn4Gec_2TXrn0yEGTfTgAfl-Ms6FNX1kUBypio1KB46lz99CNy8xQ8nwO1rNy-TX_fk71N_6MCUQFf1lMhn1-8D1hYnxuch_GXR323ZX6qcyuih1D6BEn4aU2is7MQdNQcP-lsCq5kSb6WES5Wal-CabMjljan0pVG0cuWdt2mTzljdFdEdm2k8YFO_qFc7rL_ttl3r89DMunhaFStz3zznRUL2kNfjE0_iyKt69-U6g1UjiScibwuRf9GHraotf1kjML-ORDpNlw3abmzalxn_FYnCJtx0D5JqxvXBqSFYvd_lkA6kydX6XkygOArh4Vf9uQTG7vnM5OGH3Zf0GaMUYUWyz8HjCvrwtvNxY4MKLLxypfB9635lj3EuF79WlrUFsAsHsuxiruqJoeNCg0owo2Af-ZCabLChan-G_odN3qegmhqv-YPSy8s66bvEc';
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODBhNTVlYjhjM2JlYWJkYjQ5MzllNjkyZTk4ZTU2YTg4ZGZmNzc2NmVjZTQ4ODMxMDhlOTIxODFjYzNjMTIwODExZTU0MmJkYzY2ODM1OTkiLCJpYXQiOjE3NTQ0MDYyMDAuODE5Mjg3LCJuYmYiOjE3NTQ0MDYyMDAuODE5Mjg5LCJleHAiOjQ5MTAwNzk4MDAuODE1MDcyLCJzdWIiOiI3MjU4ODU0OSIsInNjb3BlcyI6WyJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIl19.r8xtEdkeLwLXto-fJlghY2VdaHR1n9CQpldu-VpVDgGZZ_3Dh7PWK7NkaAACiqkjuTn9hPSIZf4HPsoTv7R01qBerjR4iq5GrcWKn--MVqHrg-K-nxCMoEX1zDrhz99KdUz-Z7N1i9y_LhKjL13W9y_vpuS3_nhbTAUIo_8kW83qb05THJkkL_YFPyL_4aXFje10xT-6_BBib8Go5YgiZ1arTCUS1uSqjUUpMMX_TQrWn4Gec_2TXrn0yEGTfTgAfl-Ms6FNX1kUBypio1KB46lz99CNy8xQ8nwO1rNy-TX_fk71N_6MCUQFf1lMhn1-8D1hYnxuch_GXR323ZX6qcyuih1D6BEn4aU2is7MQdNQcP-lsCq5kSb6WES5Wal-CabMjljan0pVG0cuWdt2mTzljdFdEdm2k8YFO_qFc7rL_ttl3r89DMunhaFStz3zznRUL2kNfjE0_iyKt69-U6g1UjiScibwuRf9GHraotf1kjML-ORDpNlw3abmzalxn_FYnCJtx0D5JqxvXBqSFYvd_lkA6kydX6XkygOArh4Vf9uQTG7vnM5OGH3Zf0GaMUYUWyz8HjCvrwtvNxY4MKLLxypfB9635lj3EuF79WlrUFsAsHsuxiruqJoeNCg0owo2Af-ZCabLChan-G_odN3qegmhqv-YPSy8s66bvEc
 
 
     dropArea.addEventListener('dragover', e => {
@@ -117,40 +118,7 @@ async function convertir() {
   progressBar.style.width = "20%";
 
   try {
-    // Paso 1: obtener URL de subida
-    const uploadRes = await fetch("https://api.cloudconvert.com/v2/import/upload", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ filename: file.name })
-    });
-
-const uploadData = await uploadRes.json();
-
-const importTaskId = uploadData.data.id;
-const uploadUrl = uploadData.data.result.form.url;
-const uploadParams = uploadData.data.result.form.parameters;
-
-
-// Paso 2: subir el archivo con los parámetros que pide CloudConvert
-const formData = new FormData();
-Object.entries(uploadParams).forEach(([key, value]) => {
-  formData.append(key, value);
-});
-formData.append("file", file);
-
-await fetch(uploadUrl, {
-  method: "POST",
-  body: formData
-});
-
-
-    progressBar.style.width = "50%";
-    statusMsg.textContent = "Archivo subido. Convirtiendo...";
-
-    // Paso 3: crear job de conversión
+    // Paso 1: crear job completo (incluye import + convert + export)
     const jobRes = await fetch("https://api.cloudconvert.com/v2/jobs", {
       method: "POST",
       headers: {
@@ -159,19 +127,18 @@ await fetch(uploadUrl, {
       },
       body: JSON.stringify({
         tasks: {
-          import_task: {
-            operation: "import/upload",
-            file: importTaskId
+          upload: {
+            operation: "import/upload"
           },
-          convert_task: {
+          convert: {
             operation: "convert",
-            input: "import_task",
+            input: "upload",
             input_format: "pdf",
             output_format: "docx"
           },
-          export_task: {
+          export: {
             operation: "export/url",
-            input: "convert_task"
+            input: "convert"
           }
         }
       })
@@ -180,14 +147,34 @@ await fetch(uploadUrl, {
     const jobData = await jobRes.json();
     const jobId = jobData.data.id;
 
-    // Paso 4: esperar a que termine la conversión
+    // Paso 2: obtener URL de subida
+    const uploadTask = jobData.data.tasks.find(t => t.name === "upload");
+    const uploadUrl = uploadTask.result.form.url;
+    const uploadParams = uploadTask.result.form.parameters;
+
+    const formData = new FormData();
+    Object.entries(uploadParams).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("file", file);
+
+    // Subir archivo
+    await fetch(uploadUrl, {
+      method: "POST",
+      body: formData
+    });
+
+    progressBar.style.width = "50%";
+    statusMsg.textContent = "Archivo subido. Convirtiendo...";
+
+    // Paso 3: esperar a que el job termine
     let downloadUrl = null;
     while (!downloadUrl) {
       const check = await fetch(`https://api.cloudconvert.com/v2/jobs/${jobId}`, {
         headers: { Authorization: `Bearer ${API_KEY}` }
       });
       const jobStatus = await check.json();
-      const exportTask = jobStatus.data.tasks.find(t => t.name === "export_task" && t.status === "finished");
+      const exportTask = jobStatus.data.tasks.find(t => t.name === "export" && t.status === "finished");
 
       if (exportTask) {
         downloadUrl = exportTask.result.files[0].url;
@@ -197,18 +184,20 @@ await fetch(uploadUrl, {
       await new Promise(resolve => setTimeout(resolve, 1500));
     }
 
-    // Paso 5: mostrar link de descarga
+    // Paso 4: mostrar link de descarga
     progressBar.style.width = "100%";
     statusMsg.textContent = "¡Conversión completada!";
     const link = descargar.querySelector("a");
     link.href = downloadUrl;
     link.download = "archivo_convertido.docx";
     descargar.classList.remove("hidden");
+
   } catch (error) {
     statusMsg.textContent = "Error en la conversión.";
     console.error(error);
   }
 }
+
 
 
 //eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODBhNTVlYjhjM2JlYWJkYjQ5MzllNjkyZTk4ZTU2YTg4ZGZmNzc2NmVjZTQ4ODMxMDhlOTIxODFjYzNjMTIwODExZTU0MmJkYzY2ODM1OTkiLCJpYXQiOjE3NTQ0MDYyMDAuODE5Mjg3LCJuYmYiOjE3NTQ0MDYyMDAuODE5Mjg5LCJleHAiOjQ5MTAwNzk4MDAuODE1MDcyLCJzdWIiOiI3MjU4ODU0OSIsInNjb3BlcyI6WyJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIl19.r8xtEdkeLwLXto-fJlghY2VdaHR1n9CQpldu-VpVDgGZZ_3Dh7PWK7NkaAACiqkjuTn9hPSIZf4HPsoTv7R01qBerjR4iq5GrcWKn--MVqHrg-K-nxCMoEX1zDrhz99KdUz-Z7N1i9y_LhKjL13W9y_vpuS3_nhbTAUIo_8kW83qb05THJkkL_YFPyL_4aXFje10xT-6_BBib8Go5YgiZ1arTCUS1uSqjUUpMMX_TQrWn4Gec_2TXrn0yEGTfTgAfl-Ms6FNX1kUBypio1KB46lz99CNy8xQ8nwO1rNy-TX_fk71N_6MCUQFf1lMhn1-8D1hYnxuch_GXR323ZX6qcyuih1D6BEn4aU2is7MQdNQcP-lsCq5kSb6WES5Wal-CabMjljan0pVG0cuWdt2mTzljdFdEdm2k8YFO_qFc7rL_ttl3r89DMunhaFStz3zznRUL2kNfjE0_iyKt69-U6g1UjiScibwuRf9GHraotf1kjML-ORDpNlw3abmzalxn_FYnCJtx0D5JqxvXBqSFYvd_lkA6kydX6XkygOArh4Vf9uQTG7vnM5OGH3Zf0GaMUYUWyz8HjCvrwtvNxY4MKLLxypfB9635lj3EuF79WlrUFsAsHsuxiruqJoeNCg0owo2Af-ZCabLChan-G_odN3qegmhqv-YPSy8s66bvEc
